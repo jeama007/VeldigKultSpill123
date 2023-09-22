@@ -1,0 +1,1 @@
+#dette er hovedfilen til spillet, alle python filer blir importert hit.
