@@ -8,11 +8,20 @@ class Rom:
         self.trap = trap
         self.spørsmål = spørsmål
     
+    def __str__(self):
+        print(f"{self.spørsmål}")
+
+    def __repr__(self):
+        return f"{self.roomnumber}"
+
 
 class Quiz:
 
+    # Lager en konstruktør som tar inn respons og kategori. Respons er responsen man får etter man har svart, og kategori er kategorien til spørsmålet
     def __init__(self, respons, kategori):
         self.respons = respons
         self.kategori = kategori
+
+
 
 
