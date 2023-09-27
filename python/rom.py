@@ -18,10 +18,14 @@ class Rom:
 class Quiz:
 
     # Lager en konstruktør som tar inn respons og kategori. Respons er responsen man får etter man har svart, og kategori er kategorien til spørsmålet
-    def __init__(self, respons, kategori):
+    def __init__(self, respons, kategori, alternativer):
         self.respons = respons
         self.kategori = kategori
+        self.alternativer = alternativer
 
 
+enkle_spørsmål = [
+    {}
+]
 
-
+    
