@@ -7,8 +7,8 @@ class Item:
         self.ilvl = ilvl
 
     def __str__(self):
-        print(f"{self.description}")
-
+        return f"{self.description}"
+    
     def __repr__(self):
         return f"{self.name}"
     
@@ -18,23 +18,44 @@ class Weapon(Item):
         super().__init__(name,description,attack,ilvl)
         self.attack = attack
 
+    def __str__(self):
+        return f"{self.description}"
+
 class Armor(Item):
     def __init__(self,name,description,defense,ilvl):
         super().__init__(name,description,defense,ilvl)
         self.defense = defense
 
 weaponNamesPrefix = ["Sword","Axe","Mace","Spear","Bow",]
-weaponNamesSuffix = ["of the "]
+weaponNamesSuffix = ["of the Monkey","of the Tiger","of the Bear","of the Wolf","of the Eagle"]
 
 armorNamesPrefix = ["Helmet","Chestplate","Leggings","Boots"]
-armorNamesSuffix = ["of the ancient","of the old","of the new","of the forgotten"]
+armorNamesSuffix = ["of the ancient","of the old","of the cold winter","of the forgotten"]
 
-def generateWeapon():
-    name = "{} {}".format(weaponNamesPrefix[r.randint(1,5)],r.choice(weaponNamesSuffix))
-    description = "This is a " + name + "."
-    attack = r.randint(1,10)
-    ilvl = r.randint(1,10)
+def generateWeapon(name="",description="",attack=0,ilvl=0):
+    if name == "":
+        name = "{} {}".format(r.choice(weaponNamesPrefix),r.choice(weaponNamesSuffix))
+    if description == "":
+        description = "This is the " + name + "."
+    if attack == 0:
+        attack = 5*ilvl
+    if ilvl == 0:
+        ilvl = ilvl
     return Weapon(name,description,attack,ilvl)
 
+def generateArmor(name="",description="",defense=0,ilvl=0):
+    if name == "":
+        name = "{} {}".format(r.choice(armorNamesPrefix),r.choice(armorNamesSuffix))
+    if description == "":
+        description = "This is a " + name + "."
+    if defense == 0:
+        defense = r.randint(1,10)
+    if ilvl == 0:
+        ilvl = r.randint(1,10)
+    return Armor(name,description,defense,ilvl)
+
 currentWeapon = generateWeapon()
+currentArmor = generateArmor()
+
 print(currentWeapon.description)
+print(currentArmor.description)
