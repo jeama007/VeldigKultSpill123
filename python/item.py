@@ -7,7 +7,7 @@ class Item:
         self.ilvl = ilvl
 
     def __str__(self):
-        return f"{self.description}"
+        return f"{self.description}" + f"Dette itemet har {self.attack} attack og {self.defense} defense."
     
     def __repr__(self):
         return f"{self.name}"
@@ -29,14 +29,14 @@ class Armor(Item):
 weaponNamesPrefix = ["Sword","Axe","Mace","Spear","Bow",]
 weaponNamesSuffix = ["of the Monkey","of the Tiger","of the Bear","of the Wolf","of the Eagle"]
 
-armorNamesPrefix = ["Helmet","Chestplate","Leggings","Boots"]
-armorNamesSuffix = ["of the ancient","of the old","of the cold winter","of the forgotten"]
+armorNamesPrefix = ["Hjelm","Brystplate","Bukse","Sko"]
+armorNamesSuffix = ["av skogen","av himmelen","av flamme","av fjellet"]
 
 def generateWeapon(name="",description="",attack=0,ilvl=0):
     if name == "":
-        name = "{} {}".format(r.choice(weaponNamesPrefix),r.choice(weaponNamesSuffix))
+        name = f"{weaponNamesPrefix} {weaponNamesSuffix}"
     if description == "":
-        description = "This is the " + name + "."
+        description = "Våpenet du holder er" + name + "."
     if attack == 0:
         attack = 5*ilvl
     if ilvl == 0:
@@ -47,9 +47,10 @@ def generateArmor(name="",description="",defense=0,ilvl=0):
     if name == "":
         name = "{} {}".format(r.choice(armorNamesPrefix),r.choice(armorNamesSuffix))
     if description == "":
-        description = "This is a " + name + "."
+        description = "" + name + "."
     if defense == 0:
-        defense = defense*ilvl
+        defense = 3*ilvl
     if ilvl == 0:
         ilvl = ilvl
     return Armor(name,description,defense,ilvl)
+
