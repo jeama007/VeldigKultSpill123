@@ -9,3 +9,5 @@ print("Velkommen til veldig kult spill 123!")
 while(True):
 
     pass
+
+#dette er for den nye pull-requesten
