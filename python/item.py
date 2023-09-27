@@ -49,13 +49,7 @@ def generateArmor(name="",description="",defense=0,ilvl=0):
     if description == "":
         description = "This is a " + name + "."
     if defense == 0:
-        defense = r.randint(1,10)
+        defense = defense*ilvl
     if ilvl == 0:
-        ilvl = r.randint(1,10)
+        ilvl = ilvl
     return Armor(name,description,defense,ilvl)
-
-currentWeapon = generateWeapon()
-currentArmor = generateArmor()
-
-print(currentWeapon.description)
-print(currentArmor.description)
