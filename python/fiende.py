@@ -15,14 +15,14 @@ class Fiende:
 listemednavn = ["Nisse", "Kjempe", "Ridder", "Ulv", "Boksman"]
 
 def nyFiende(nivå):
-    fiende = Fiende(r.choice(listemednavn), 10*nivå, nivå, nivå/2)
+    fiende = Fiende(r.choice(listemednavn), 10*nivå, 5*nivå, 2*nivå/2)
     return fiende
 
 def fiendeDør():
     fiendevåpen = item.generateWeapon()
     print("Fienden døde!")
     print("Fienden slapp et våpen: " + fiendevåpen.navn)
-    
+    return fiendevåpen
 
     pass
 """

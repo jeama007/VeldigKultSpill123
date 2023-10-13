@@ -36,6 +36,15 @@ while(True):
             motstander.damage(spiller.weapon.attack)
             if(motstander.hp < 1):
                 print("Du vant!")
+                nyttvåpen = fiende.fiendeDør(ilvl = romnummer)
+                print("Fienden slapp et nytt våpen", nyttvåpen.navn, "med", nyttvåpen.attack, "attack")
+                print("Vil du bytte våpen?")
+                ch = SpillerValg("0. Ja\n1. Nei\n> ")
+                if ch == 0:
+                    spiller.weapon = nyttvåpen
+                    print("Du byttet våpen!")
+                else:
+                    print("Du beholdt ditt gamle våpen")
                 #få våpen til monster her?
                 break
         elif ch == 1:
