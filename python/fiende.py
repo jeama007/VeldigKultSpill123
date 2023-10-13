@@ -1,5 +1,4 @@
 import random as r
-import item as item
 class Fiende:
     def __init__(self, navn, hp, damage, forsvar):
         self.navn = navn
@@ -18,13 +17,6 @@ def nyFiende(nivå):
     fiende = Fiende(r.choice(listemednavn), 10*nivå, 5*nivå, 2*nivå/2)
     return fiende
 
-def fiendeDør():
-    fiendevåpen = item.generateWeapon()
-    print("Fienden døde!")
-    print("Fienden slapp et våpen: " + fiendevåpen.navn)
-    return fiendevåpen
-
-    pass
 """
 nisse = Fiende("Nisse", 50, 5, 1) # Svak fiende
 

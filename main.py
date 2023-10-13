@@ -1,6 +1,5 @@
 #dette er hovedfilen til spillet, alle python filer blir importert hit.
 import python.spiller as player
-import python.rom as rom
 import python.fiende as fiende
 import python.item as item
 
@@ -28,32 +27,34 @@ while(True):
     romnummer = romnummer + 1
     print(currentRoom)'''
     motstander = fiende.nyFiende(romnummer)
-    input("Du møter fiende.", motstander.navn)
+    input("Du møter fiende " +  motstander.navn)
     while(spiller.hp > 0):
+        print("Du har ")
         #turen til spilleren er interaktiv, fiende er generert
-        ch = SpillerValg("Hva vil du gjøre?? \n 0. angrip med våpenet ditt \n 1. angrip deg selv med våpenet ditt \nskriv alternativ> ")
+        ch = SpillerValg("Hva vil du gjøre?? \n 0. angrip med våpenet ditt \n 1. angrip deg selv med våpenet ditt \nskriv alternativ> ", 2)
         if ch == 0:
-            motstander.damage(spiller.weapon.attack)
+            motstander.fiende_damage(spiller.weapon.attack)
+            print("Du angriper med våpenet ditt og gjør", spiller.weapon.attack, "skade!")
             if(motstander.hp < 1):
                 print("Du vant!")
-                nyttvåpen = fiende.fiendeDør(ilvl = romnummer)
-                print("Fienden slapp et nytt våpen", nyttvåpen.navn, "med", nyttvåpen.attack, "attack")
+                nyttvåpen = item.generateWeapon(ilvl = romnummer)
+                print("Fienden slapp et nytt våpen:", nyttvåpen.name, "med", nyttvåpen.attack, "attack")
                 print("Vil du bytte våpen?")
-                ch = SpillerValg("0. Ja\n1. Nei\n> ")
+                ch = SpillerValg("0. Ja\n1. Nei\n> ", 2)
                 if ch == 0:
                     spiller.weapon = nyttvåpen
                     print("Du byttet våpen!")
                 else:
-                    print("Du beholdt ditt gamle våpen")
-                #få våpen til monster her?
+                    print("Du beholdt ditt gamle våpen (taper)")
                 break
         elif ch == 1:
             spiller.damage(spiller.weapon.attack)
-        #spillervalg ferdig
+            print("Du angrep deg selv!")
 
         print(f'{motstander.navn} angriper med våpenet sitt!')
         spiller.damage(spiller.weapon.attack)
-        input()
+        input()#ended av en runde
 
 
 #"Gå inn i nytt rom?" -> møtes fiende. Ta i turer på å slå eller lignende? Basert på rommets innhold
+#legg in verdier

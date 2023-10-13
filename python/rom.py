@@ -3,12 +3,37 @@ import random as r
 class Rom:
 
     # Lager en konstuktør som tar inn roomnumber, trap og quiz. Quiz tenkte jeg kunne være spørsmål man får når man går inn i et nytt rom
-    def __init__(self,roomnumber, trap):
+    def __init__(self,roomnumber, roomname):
         self.roomnumber = roomnumber
-        self.trap = trap
+        self.roomname = roomname
 
-    def __repr__(self):
-        return f"{self.roomnumber}"
+    def get_room(self):
+        return f"Du har kommet til rom {self.roomnumber} | {self.roomname}"
+
+
+roomnames = [
+    "Kjelleren i S-bygget", 
+    "Kiwi",
+    "The Red Keep",
+    "Fanatisk gudsstue",
+    "Dommedagens Brønn",
+    "Enchanted Echo Haven",
+    "Freddy Fazbear's pizzeria",
+    "Peculiar Paradox Parlor",
+    "Oddball Oasis Annex",
+    "Smultronstället",
+    "Regnbueobservatoriet",
+    "Vulkankjelleren",
+    "Nissen's Bibliotek",
+    "Det blå rommet",
+    "Mørkets loft"
+]
+
+i= 0
+for i in range(0, 16):
+    roomname = roomnames[r.randint(0, len(roomnames))]
+    print(roomname)
+    i +=1
 
 class Quiz:
 
@@ -22,7 +47,9 @@ femteklasse_spørsmål = Quiz()
 #En funksjon som velger et tilfeldig spørsmål
 def generateQuiz():
     print(r.choice(femteklasse_spørsmål))
-    i = rd.randint(0, len(Rom.roomnumber))
+    i = r.randint(0, len(Rom.roomnumber))
+    print(femteklasse_spørsmål[i]["spørsmål"])
+
 
 
 femteklasse_spørsmål = [
@@ -53,8 +80,9 @@ allmennskunnskap_spørsmål = [
 
 
 got_spørsmål = [
-    {"spørsmål": "Who was responsible for the creation of the Night King?", "alternativer": {["The Lord of Light"]["The Children of the Forest"]["The Drowned God "]["The First Men "]}, "svar": "The Children of the Forest"},
-    {"spørsmål": "In the TV show, what was Hodor called before he got his tragic door-holding nickname?", "alternativer": {["Wylis"]["Horys"]["Myrys"]["Gladys"]}, "svar": "Wylis"},
-    {"spørsmål": "Dany’s dragons are (or were) called Drogon, Viserion and ____?", "alternativer": {["Dougal"]["Vhagar"]["Rhaegal"]["Balerion"]}, "svar": "Rhaegal"},
-    {"spørsmål": "Who said: 'I don’t plan on knitting by the fire while men fight for me'?", "alternativer": {["Lyanna Mormont"]["Sansa Stark"]["Ser Brienne of Tarth"]["Olenna Tyrell"]}, "svar": "Lyanna Mormont"}
+    {"spørsmål": "Who was responsible for the creation of the Night King?", "alternativer": ["The Lord of Light", "The Children of the Forest", "The Drowned God ", "The First Men "], "svar": "The Children of the Forest"},
+    {"spørsmål": "In the TV show, what was Hodor called before he got his tragic door-holding nickname?", "alternativer": ["Wylis", "Horys", "Myrys", "Gladys"], "svar": "Wylis"},
+    {"spørsmål": "Dany’s dragons are (or were) called Drogon, Viserion and ____?", "alternativer": ["Dougal", "Vhagar", "Rhaegal", "Balerion"], "svar": "Rhaegal"},
+    {"spørsmål": "Who said: 'I don’t plan on knitting by the fire while men fight for me'?", "alternativer": ["Lyanna Mormont", "Sansa Stark", "Ser Brienne of Tarth", "Olenna Tyrell"], "svar": "Lyanna Mormont"}
 ]
+print(got_spørsmål)
