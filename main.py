@@ -29,7 +29,7 @@ while(True):
     motstander = fiende.nyFiende(romnummer)
     input("Du møter fiende " +  motstander.navn)
     while(spiller.hp > 0):
-        print("Du har ")
+        print("Du har", spiller.hp, "hp igjen. \n",motstander.navn,"har ",motstander.hp,"igjen.")
         #turen til spilleren er interaktiv, fiende er generert
         ch = SpillerValg("Hva vil du gjøre?? \n 0. angrip med våpenet ditt \n 1. angrip deg selv med våpenet ditt \nskriv alternativ> ", 2)
         if ch == 0:
