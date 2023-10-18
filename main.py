@@ -57,4 +57,3 @@ while(True):
 
 
 #"Gå inn i nytt rom?" -> møtes fiende. Ta i turer på å slå eller lignende? Basert på rommets innhold
-#legg in verdier
