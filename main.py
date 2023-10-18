@@ -29,7 +29,7 @@ while(game):
     #romliste.append(rom.Rom())
     #currentRoom = romliste[romnummer-1]
     romliste.append(rom.generateRom("",len(romliste)))
-    print(romliste[len(romliste)-1].romnavn)
+    print(f"du er på {romliste[len(romliste)-1].romnavn}\n")
     #her kan vi ha skille mellom hva som skjer i rommene. Man møter enten en fiende, en quiz, eller en kake mmmmmmm
 
     motstander = fiende.nyFiende(len(romliste)+1)
@@ -74,13 +74,12 @@ while(game):
 
         if spiller.hp <= 0:#spiller død
             print("\nDu er  er død :(\n")
-            input()
             game = False
-        elif motstander.hp > 0:#motstander død
+        if motstander.hp > 0 and spiller.hp > 0:#motstander angrep
             print(f'{motstander.navn} angriper med våpenet sitt og gjør {motstander.damage} skade!')
             spiller.damage(motstander.damage)
 
-        input()#pause
+        input("\n--press enter to continieute--\n")#pause
 
 print("Game over.")
 

@@ -11,7 +11,7 @@ class Fiende:
 
 # Verdier er ikke endelige, bare placeholder
 
-listemednavn = ["Nisse", "Kjempe", "Ridder", "Ulv", "Boksman"]
+listemednavn = ["Nisse", "Kjempe", "Ridder", "Ulv", "Boksman", "Sondre Aadnesen"]
 
 def nyFiende(nivå):
     fiende = Fiende(r.choice(listemednavn), 10*nivå, 5*nivå, 2*nivå/2)
