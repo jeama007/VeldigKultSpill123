@@ -1,17 +1,15 @@
 import random as r
 
 class Rom:
+    # Lager en konstuktør som tar inn romnummer og romnavn
+    def __init__(self, romnavn, romnummer:int=1):
+        self.romnavn = romnavn
+        self.romnummer = romnummer
 
-    # Lager en konstuktør som tar inn roomnumber, trap og quiz. Quiz tenkte jeg kunne være spørsmål man får når man går inn i et nytt rom
-    def __init__(self,roomnumber, roomname):
-        self.roomnumber = roomnumber
-        self.roomname = roomname
+    def get_rom(self):
+        return f"Du har kommet til rom nummer: {self.romnummer}"
 
-    def get_room(self):
-        return f"Du har kommet til rom {self.roomnumber} | {self.roomname}"
-
-
-roomnames = [
+romnavnListe = [
     "Kjelleren i S-bygget", 
     "Kiwi",
     "The Red Keep",
@@ -29,60 +27,87 @@ roomnames = [
     "Mørkets loft"
 ]
 
-i= 0
-for i in range(0, 16):
-    roomname = roomnames[r.randint(0, len(roomnames))]
-    print(roomname)
-    i +=1
+def generateRom(romnavn="", romnummer=1):
+    if romnavn == "":
+        romnavn = f"{romnavnListe[r.randint(0,14)]}"
+    if romnummer == 0:
+        romnummer = romnummer + 1
+    return Rom(romnavn, romnummer)
+
+
+kakeRom = Rom("Kake-Rom", 16) #Her er det siste rommet "Kake-rom"
+def Kake(): #En funksjon som printer en melding etter at du har vunnet
+    print("Gratulerer du er superkul!")
+    print("Reisen din er slutt")
+    game = False
 
 class Quiz:
-
     # Lager en konstruktør som tar inn respons og kategori. Respons er responsen man får etter man har svart, og kategori er kategorien til spørsmålet
     def __init__(self, spørsmål:str="", svar:str=""):
         self.spørsmål = spørsmål
+        self.svar = svar    
+        
+
+class Quiz:
+    # Lager en konstruktør som tar inn respons og kategori. Respons er responsen man får etter man har svart, og kategori er kategorien til spørsmålet
+    def __init__(self, spørsmål:str="", alternativer=None, svar:str=""):
+        self.spørsmål = spørsmål
+        self.alternativer = alternativer or []
         self.svar = svar
 
 femteklasse_spørsmål = Quiz()
+allmennskunnskap_spørsmål = Quiz()
+got_spørsmål = Quiz()
 
-#En funksjon som velger et tilfeldig spørsmål
-def generateQuiz():
-    print(r.choice(femteklasse_spørsmål))
-    i = r.randint(0, len(Rom.roomnumber))
-    print(femteklasse_spørsmål[i]["spørsmål"])
-
-
-
-femteklasse_spørsmål = [
-    {"spørsmål": "Hva er hovedstaden i Norge?", "svar": "Oslo"},
-    {"spørsmål": "Hva er 7 + 3?", "svar": "10"},
-    {"spørsmål": "Hva er hovedfargen på en banan?", "svar": "Gul"},
-    {"spørsmål": "Hva er verdens største planet?", "svar": "Jupiter"},
-    {"spørsmål": "Hva heter den store veggen som ble bygd i Kina for lenge siden?", "svar": "Den kinesiske mur"},
-    {"spørsmål": "Hva er hovedstaden i Frankrike?", "svar": "Paris"},
-    {"spørsmål": "Hva er hovedfargen på gress?", "svar": "Grønn"},
-    {"spørsmål": "Hva er 5 multiplisert med 4?", "svar": "20"},
-    {"spørsmål": "Hva er hovedfargen på en eple?", "svar": "Rød"},
-    {"spørsmål": "Hva er 9 delt på 3?", "svar": "3"}
+femteklasse_spørsmål = [ #Liste med spørsmål til rommene
+    Quiz("Hva er hovedstaden i Norge?", [], "Oslo"),
+    Quiz("Hva er 7 + 3?", [], "10"),
+    Quiz("Hva er hovedfargen på en banan?", [], "Gul"),
+    Quiz("Hva er verdens største planet?", [], "Jupiter"),
+    Quiz("Hva heter den store veggen som ble bygd i Kina for lenge siden?", [], "Den kinesiske mur"),
+    Quiz("Hva er hovedstaden i Frankrike?", [], "Paris"),
+    Quiz("Hva er hovedfargen på gress?", [], "Grønn"),
+    Quiz("Hva er 5 multiplisert med 4?", [], "20"),
+    Quiz("Hva er hovedfargen på en eple?", [], "Rød"),
+    Quiz("Hva er 9 delt på 3?", [], "3")
 ]
 
-allmennskunnskap_spørsmål = [
-    {"spørsmål":"Hva er en persimon?", "svar": "Frukt"},
-    {"spørsmål":"Hva er den største byen i Norge", "svar": "Trondheim"},
-    {"spørsmål":"Hva er hovedstaten i Canada?", "svar": "Ottawa"},
-    {"spørsmål":"Hvor kommer makronen originalt fra?", "svar": "Italia"},
-    {"spørsmål":"Hvor høyt er Galdhøpiggen","svar":"2469 meter"},
-    {"spørsmål":"Hvor høyt er Eiffel tårnet?","svar":"324 meter"},
-    {"spørsmål":"Fleip eller Fakta: En kvinnelig hest kalles for ei hoppe","svar":"Fakta"},
-    {"spørsmål":"Fleip eller Fakta: Joe Biden ble president 12. januar","svar":"Fleip"},
-    {"spørsmål":"Fleip eller Fakta: Falsk kantarell er en spiselig matsopp","svar":"Fleip"},
-    {"spørsmål":"Fleip eller Fakta: Armstrong er det første mennesket i verdensrommet","svar":"Fleip"}
+allmennskunnskap_spørsmål = [ #Liste med spørsmål til rommen
+    Quiz("Hva er en persimon?", "Frukt"),
+    Quiz("Hva er den største byen i Norge", "Trondheim"),
+    Quiz("Hva er hovedstaten i Canada?", "Ottawa"),
+    Quiz("Hvor kommer makronen originalt fra?", "Italia"),
+    Quiz("Hvor høyt er Galdhøpiggen", "2469 meter"),
+    Quiz("Hvor høyt er Eiffel tårnet?", "324 meter"),
+    Quiz("Fleip eller Fakta: En kvinnelig hest kalles for ei hoppe", "Fakta"),
+    Quiz("Fleip eller Fakta: Joe Biden ble president 12. januar", "Fleip"),
+    Quiz("Fleip eller Fakta: Falsk kantarell er en spiselig matsopp", "Fleip"),
+    Quiz("Fleip eller Fakta: Armstrong er det første mennesket i verdensrommet", "Fleip")
 ]
 
 
-got_spørsmål = [
-    {"spørsmål": "Who was responsible for the creation of the Night King?", "alternativer": ["The Lord of Light", "The Children of the Forest", "The Drowned God ", "The First Men "], "svar": "The Children of the Forest"},
-    {"spørsmål": "In the TV show, what was Hodor called before he got his tragic door-holding nickname?", "alternativer": ["Wylis", "Horys", "Myrys", "Gladys"], "svar": "Wylis"},
-    {"spørsmål": "Dany’s dragons are (or were) called Drogon, Viserion and ____?", "alternativer": ["Dougal", "Vhagar", "Rhaegal", "Balerion"], "svar": "Rhaegal"},
-    {"spørsmål": "Who said: 'I don’t plan on knitting by the fire while men fight for me'?", "alternativer": ["Lyanna Mormont", "Sansa Stark", "Ser Brienne of Tarth", "Olenna Tyrell"], "svar": "Lyanna Mormont"}
+got_spørsmål = [ #Liste med spørsmål til rommene
+    Quiz("Who was responsible for the creation of the Night King?", ["The Lord of Light", "The Children of the Forest", "The Drowned God ", "The First Men "], "The Children of the Forest"),
+    Quiz("In the TV show, what was Hodor called before he got his tragic door-holding nickname?", ["Wylis", "Horys", "Myrys", "Gladys"], "Wylis"),
+    Quiz("Dany’s dragons are (or were) called Drogon, Viserion and ____?", ["Dougal", "Vhagar", "Rhaegal", "Balerion"], "Rhaegal"),
+    Quiz("Who said: 'I don’t plan on knitting by the fire while men fight for me'?", ["Lyanna Mormont", "Sansa Stark", "Ser Brienne of Tarth", "Olenna Tyrell"], "Lyanna Mormont")
 ]
-print(got_spørsmål)
+
+for spørsmål_info in got_spørsmål:
+    alternativer = spørsmål_info["alternativer"]
+ 
+#shuffler alternativene
+r.shuffle(alternativer)
+
+for i in range(len(alternativer)):
+    alternativer = f"{i + 1}. {alternativer[i]}"
+
+# Generer et tilfeldig spørsmål fra en kategori
+def generateRandomQuiz(femteklasse, allmennskunnskap, got):
+    # Velg en tilfeldig kategori
+    kategori = r.choice([femteklasse, allmennskunnskap, got])
+    # Velg et tilfeldig spørsmål fra den valgte kategorien
+    tilfeldig_spørsmål = r.choice(kategori)
+    return tilfeldig_spørsmål
+
+tilfeldig_spørsmål = generateRandomQuiz(femteklasse_spørsmål, allmennskunnskap_spørsmål, got_spørsmål)

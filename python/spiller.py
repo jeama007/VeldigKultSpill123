@@ -1,9 +1,11 @@
 class spiller:
-    def __init__(self, navn, weapon, armor):
+    def __init__(self, navn, weapon, armor,ting:list=[]):
         self.navn = navn
-        self.hp = 100
+        self.maxhp = 100
+        self.hp = self.maxhp
         self.weapon = weapon
         self.armor = armor
+        self.ting = ting
     
     def damage(self, dmg):#funksjon for spillerskade
         self.hp = self.hp - dmg
