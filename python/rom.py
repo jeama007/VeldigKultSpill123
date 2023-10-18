@@ -93,14 +93,6 @@ got_spørsmål = [ #Liste med spørsmål til rommene
     Quiz("Who said: 'I don’t plan on knitting by the fire while men fight for me'?", ["Lyanna Mormont", "Sansa Stark", "Ser Brienne of Tarth", "Olenna Tyrell"], "Lyanna Mormont")
 ]
 
-for spørsmål_info in got_spørsmål:
-    alternativer = spørsmål_info["alternativer"]
- 
-#shuffler alternativene
-r.shuffle(alternativer)
-
-for i in range(len(alternativer)):
-    alternativer = f"{i + 1}. {alternativer[i]}"
 
 # Generer et tilfeldig spørsmål fra en kategori
 def generateRandomQuiz(femteklasse, allmennskunnskap, got):
